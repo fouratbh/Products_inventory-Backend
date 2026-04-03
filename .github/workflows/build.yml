@@ -1,0 +1,36 @@
+name: Build and Analyze
+on:
+  push:
+    branches:
+      - master # Vérifie si ta branche s'appelle master ou main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    name: Build and analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Crucial pour que Sonar lise l'historique Git
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatique par GitHub
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Celui que tu as créé
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Products_inventory-Backend -Dsonar.organization=fouratbh -Dsonar.host.url=https://sonarcloud.io
