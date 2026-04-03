@@ -33,4 +33,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatique par GitHub
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Celui que tu as créé
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=Products_inventory-Backend -Dsonar.organization=fouratbh -Dsonar.host.url=https://sonarcloud.io
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=fouratbh_Products_inventory-Backend -Dsonar.organization=fouratbh -Dsonar.host.url=https://sonarcloud.io
