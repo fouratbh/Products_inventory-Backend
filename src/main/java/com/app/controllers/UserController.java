@@ -37,7 +37,7 @@ public class UserController {
 
     
     @SuppressWarnings("unchecked")
-	@GetMapping("/{id}")
+	@GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<ApiResponse<PageResponse<UserDto>>> getAllUsers(
     		@PageableDefault(size = 20, sort ="username", direction = Sort.Direction.ASC)

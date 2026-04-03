@@ -24,6 +24,9 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jwt.version>0.12.3</jwt.version>
+        <sonar.organization>fouratbh</sonar.organization>
+         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    <jacoco.version>0.8.11</jacoco.version>
     </properties>
     
     <dependencies>

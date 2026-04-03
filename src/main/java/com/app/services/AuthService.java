@@ -47,7 +47,7 @@ public class AuthService {
 		String refreshToken = tokenProvider.generateRefreshToken(authentication);
 		
 		User user = userRepository.findByUsernameWithRoles(request.getUsername())
-				.orElseThrow(() -> new RuntimeException("User not found"));
+				.orElseThrow(() -> new ResourceNotFoundException("User not found"));
 		
 		log.info("User {} logged in successfully", request.getUsername());
 		

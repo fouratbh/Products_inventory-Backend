@@ -36,7 +36,7 @@ public class StockMovementService {
             .toList();
     }
     
-    void createInitialStockMovement(Product product, Integer quantity) {
+    public void createInitialStockMovement(Product product, Integer quantity) {
         User currentUser = getCurrentUser();
         
         StockMovement movement = StockMovement.builder()
@@ -71,7 +71,7 @@ public class StockMovementService {
         stockMovementRepository.save(movement);
     }
     
-    void createAdjustmentMovement(Product product, Integer quantity, String notes) {
+    public void createAdjustmentMovement(Product product, Integer quantity, String notes) {
         User currentUser = getCurrentUser();
         
         StockMovement movement = StockMovement.createAdjustmentMovement(

@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 
 import com.app.entities.Role;
@@ -19,14 +20,22 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
+
 public class DataInitializer {
+	
+	@Value("${app.default.admin.password}")
+	private String adminPassword;
     
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     
+    
+    
     @Bean
     public CommandLineRunner initData() {
+    	
+    	
         return args -> {
             // Créer les rôles s'ils n'existent pas
             createRoleIfNotExists("ROLE_ADMIN", "Administrateur système");
@@ -42,7 +51,7 @@ public class DataInitializer {
                 User admin = User.builder()
                     .username("admin")
                     .email("admin@inventory.com")
-                    .password(passwordEncoder.encode("admin123"))
+                    .password(passwordEncoder.encode(adminPassword))
                     .firstName("Admin")
                     .lastName("System")
                     .enabled(true)
