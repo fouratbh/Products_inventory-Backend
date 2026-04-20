@@ -88,7 +88,7 @@ public class ProductService {
             .toList();
     }
     
-    public ProductDto createProduct(ProductCreateDto dto) {
+    public ProductDto createProduct(ProductCreateDto dto, String imageName) {
         if (productRepository.existsByCode(dto.getCode())) {
             throw new IllegalArgumentException("Product code already exists: " + dto.getCode());
         }
@@ -112,6 +112,7 @@ public class ProductService {
             .maxStockLevel(dto.getMaxStockLevel() != null ? dto.getMaxStockLevel() : 1000)
             .unit(dto.getUnit() != null ? dto.getUnit() : "pièce")
             .warrantyMonths(dto.getWarrantyMonths() != null ? dto.getWarrantyMonths() : 12)
+            .imageUrl(imageName)
             .build();
         
         Product savedProduct = productRepository.save(product);
@@ -129,6 +130,7 @@ public class ProductService {
     }
     
     public ProductDto updateProduct(Long id, ProductUpdateDto dto) {
+    	log.info("DTO reçu pour mise à jour : {}", dto.toString());
         Product product = productRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
         
@@ -144,12 +146,33 @@ public class ProductService {
             product.setSupplier(supplier);
         }
         
+        if (dto.getQuantityInStock() != null) {
+            product.setQuantityInStock(dto.getQuantityInStock());
+        }
+        
         productMapper.updateEntityFromDTO(dto, product);
+        
+        if (dto.getImageUrl() != null) {
+            product.setImageUrl(dto.getImageUrl());
+        }
         
         Product updatedProduct = productRepository.save(product);
         log.info("Product updated: {}", updatedProduct.getCode());
         
         return productMapper.toDTO(updatedProduct);
+    }
+    
+    @Transactional
+    public void updateProductStock(Long id, Integer quantityChange) {
+        Product product = productRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
+        
+        // Le quantityChange sera négatif pour une vente (-1) 
+        // et positif pour une annulation (+1)
+        product.setQuantityInStock(product.getQuantityInStock() + quantityChange);
+        
+        productRepository.save(product);
+        log.info("Stock mis à jour pour le produit {}. Nouveau stock: {}", id, product.getQuantityInStock());
     }
     
     public void deleteProduct(Long id) {

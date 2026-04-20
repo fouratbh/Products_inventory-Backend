@@ -66,6 +66,7 @@ class ProductServiceTest {
     private ProductDto ProductDto;
     private Category testCategory;
     private Supplier testSupplier;
+    private String imageName = "test-image.jpg";
 
     @BeforeEach
     void setUp() {
@@ -168,7 +169,7 @@ class ProductServiceTest {
 
         // Then
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo(1L);
+        assertThat(result.id()).isEqualTo(1L);
         verify(productRepository).findByIdWithDetails(1L);
     }
 
@@ -184,7 +185,7 @@ class ProductServiceTest {
 
         // Then
         assertThat(result).isNotNull();
-        assertThat(result.getCode()).isEqualTo("PROD001");
+        assertThat(result.code()).isEqualTo("PROD001");
         verify(productRepository).findByCode("PROD001");
     }
 
@@ -241,7 +242,7 @@ class ProductServiceTest {
         when(productMapper.toDTO(any(Product.class))).thenReturn(ProductDto);
 
         // When
-        ProductDto result = productService.createProduct(createDTO);
+        ProductDto result = productService.createProduct(createDTO,imageName);
 
         // Then
         assertThat(result).isNotNull();
@@ -268,7 +269,7 @@ class ProductServiceTest {
         when(productRepository.existsByCode("EXISTING")).thenReturn(true);
 
         // When/Then
-        assertThatThrownBy(() -> productService.createProduct(createDTO))
+        assertThatThrownBy(() -> productService.createProduct(createDTO,imageName))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("Product code already exists");
         

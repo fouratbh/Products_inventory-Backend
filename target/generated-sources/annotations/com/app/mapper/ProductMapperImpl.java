@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-03T08:28:46+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.8 (Oracle Corporation)"
+    date = "2026-04-20T17:26:58+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Microsoft)"
 )
 @Component
 public class ProductMapperImpl implements ProductMapper {
@@ -45,6 +45,7 @@ public class ProductMapperImpl implements ProductMapper {
         productDto.warrantyMonths( product.getWarrantyMonths() );
         productDto.createdAt( product.getCreatedAt() );
         productDto.updatedAt( product.getUpdatedAt() );
+        productDto.imageUrl( product.getImageUrl() );
 
         productDto.margin( product.getMargin() );
         productDto.marginPercentage( product.getMarginPercentage() );

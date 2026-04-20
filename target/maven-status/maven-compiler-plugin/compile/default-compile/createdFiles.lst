@@ -48,6 +48,7 @@ com\app\dto\DashboardStatsDTO.class
 com\app\dto\UserUpdateDto$UserUpdateDtoBuilder.class
 com\app\mapper\SalesOrderItemMapper.class
 com\app\dto\UserDto.class
+com\app\kafka\OrderEventConsumer.class
 com\app\dto\PurchaseOrderItemDTO.class
 com\app\exceptions\InsufficientStockException.class
 com\app\mapper\PurchaseOrderItemMapperImpl.class
@@ -58,6 +59,7 @@ com\app\mapper\SupplierMapper.class
 com\app\mapper\PageMapperImpl.class
 com\app\mapper\SalesOrderMapper.class
 com\app\entities\Category$CategoryBuilder.class
+com\app\kafka\KafkaProducerService.class
 com\app\entities\User.class
 com\app\exceptions\BusinessException.class
 com\app\dto\CategoryDto$CategoryDtoBuilder.class
@@ -74,9 +76,7 @@ com\app\dto\SalesOrderCreateDTO.class
 com\app\dto\SalesOrderItemCreateDTO.class
 com\app\dto\SalesOrderUpdateDTO.class
 com\app\entities\Customer$CustomerType.class
-com\app\dto\CustomerDto$CustomerDtoBuilder.class
 com\app\dto\ProductStockAdjustmentDto.class
-com\app\dto\PaymentDTO$PaymentDTOBuilder.class
 com\app\dto\RoleCreateDto$RoleCreateDtoBuilder.class
 com\app\dto\RoleCreateDto.class
 com\app\mapper\CategoryMapper.class
@@ -84,6 +84,7 @@ com\app\mapper\UserMapperImpl.class
 com\app\controllers\CustomerController.class
 com\app\dto\ProductStockAdjustmentDto$ProductStockAdjustmentDtoBuilder.class
 com\app\dto\SalesOrderCreateDTO$SalesOrderCreateDTOBuilder.class
+com\app\services\FileStorageService.class
 com\app\dto\ApiResponse.class
 com\app\dto\CustomerDto.class
 com\app\controllers\PurchaseOrderController.class
@@ -95,7 +96,6 @@ com\app\entities\User$UserBuilder.class
 com\app\repos\UserRepository.class
 com\app\dto\ProductUpdateDto$ProductUpdateDtoBuilder.class
 com\app\dto\PaymentCreateDTO.class
-com\app\security\JwtTokenProvider.class
 com\app\dto\SalesOrderItemDTO$SalesOrderItemDTOBuilder.class
 com\app\mapper\CustomerMapper.class
 com\app\dto\SupplierDto$SupplierDtoBuilder.class
@@ -133,15 +133,16 @@ com\app\entities\Role$RoleBuilder.class
 com\app\entities\SalesOrder.class
 com\app\dto\CustomerCreateDto$CustomerCreateDtoBuilder.class
 com\app\mapper\SupplierMapperImpl.class
+com\app\config\WebConfig.class
 com\app\entities\SalesOrder$SalesOrderBuilder.class
 com\app\mapper\CustomerMapperImpl.class
 com\app\dto\PurchaseOrderItemCreateDTO$PurchaseOrderItemCreateDTOBuilder.class
 com\app\config\AsyncConfig.class
 com\app\repos\StockMovementRepository.class
+com\app\controllers\DebugController.class
 com\app\entities\StockMovement$StockMovementBuilder.class
 com\app\dto\ProductStatsDTO.class
 com\app\services\SalesOrderService.class
-com\app\security\JwtAuthenticationFilter.class
 com\app\entities\SalesOrder$PaymentStatus.class
 com\app\mapper\PaymentMapper.class
 com\app\Main.class

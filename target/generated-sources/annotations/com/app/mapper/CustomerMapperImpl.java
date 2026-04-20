@@ -3,6 +3,7 @@ package com.app.mapper;
 import com.app.dto.CustomerCreateDto;
 import com.app.dto.CustomerDto;
 import com.app.entities.Customer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-03T08:28:46+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.8 (Oracle Corporation)"
+    date = "2026-04-20T17:26:58+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Microsoft)"
 )
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
@@ -22,23 +23,35 @@ public class CustomerMapperImpl implements CustomerMapper {
             return null;
         }
 
-        CustomerDto.CustomerDtoBuilder customerDto = CustomerDto.builder();
+        Long id = null;
+        String code = null;
+        String name = null;
+        String contactPerson = null;
+        String email = null;
+        String phone = null;
+        String address = null;
+        String city = null;
+        String country = null;
+        LocalDateTime createdAt = null;
+        LocalDateTime updatedAt = null;
 
-        customerDto.id( customer.getId() );
-        customerDto.code( customer.getCode() );
-        customerDto.name( customer.getName() );
-        customerDto.contactPerson( customer.getContactPerson() );
-        customerDto.email( customer.getEmail() );
-        customerDto.phone( customer.getPhone() );
-        customerDto.address( customer.getAddress() );
-        customerDto.city( customer.getCity() );
-        customerDto.country( customer.getCountry() );
-        customerDto.createdAt( customer.getCreatedAt() );
-        customerDto.updatedAt( customer.getUpdatedAt() );
+        id = customer.getId();
+        code = customer.getCode();
+        name = customer.getName();
+        contactPerson = customer.getContactPerson();
+        email = customer.getEmail();
+        phone = customer.getPhone();
+        address = customer.getAddress();
+        city = customer.getCity();
+        country = customer.getCountry();
+        createdAt = customer.getCreatedAt();
+        updatedAt = customer.getUpdatedAt();
 
-        customerDto.customerType( customer.getCustomerType() != null ? customer.getCustomerType().name() : null );
+        String customerType = customer.getCustomerType() != null ? customer.getCustomerType().name() : null;
 
-        return customerDto.build();
+        CustomerDto customerDto = new CustomerDto( id, code, name, contactPerson, email, phone, address, city, country, customerType, createdAt, updatedAt );
+
+        return customerDto;
     }
 
     @Override

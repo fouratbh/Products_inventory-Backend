@@ -8,6 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PageResponse;
@@ -25,8 +28,10 @@ import com.app.dto.ProductDto;
 import com.app.dto.ProductStockAdjustmentDto;
 import com.app.dto.ProductUpdateDto;
 import com.app.dto.StockMovementDTO;
+import com.app.services.FileStorageService;
 import com.app.services.ProductService;
 import com.app.services.StockMovementService;
+import org.springframework.http.MediaType;
 
 import jakarta.validation.Valid;
 
@@ -38,10 +43,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/products")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class ProductController {
     
     private final ProductService productService;
     private final StockMovementService stockMovementService;
+    private final FileStorageService fileStorageService;
     
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<ProductDto>>> getAllProducts(
@@ -104,25 +111,37 @@ public class ProductController {
         return ResponseEntity.ok(ApiResponse.success(movements));
     }
     
-    @PostMapping
+    @PostMapping(value = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<ApiResponse<ProductDto>> createProduct(
-            @Valid @RequestBody ProductCreateDto dto) {
-        ProductDto product = productService.createProduct(dto);
+            @RequestPart("image") MultipartFile image,
+            @Valid @RequestPart("product") ProductCreateDto dto) { 
+        
+        String imageName = fileStorageService.save(image);
+        
+        ProductDto product = productService.createProduct(dto, imageName);
+        
         return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(ApiResponse.success("Produit créé avec succès", product));
+                .status(HttpStatus.CREATED)
+                .body(ApiResponse.success("Produit créé avec succès", product));
     }
     
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     public ResponseEntity<ApiResponse<ProductDto>> updateProduct(
             @PathVariable Long id,
-            @Valid @RequestBody ProductUpdateDto dto) {
+            @RequestPart("product") @Valid ProductUpdateDto dto,
+            @RequestPart(value = "image", required = false) MultipartFile image) {
+
+        if (image != null && !image.isEmpty()) {
+            String imageName = fileStorageService.save(image);
+            dto.setImageUrl(imageName);
+        }
+
         ProductDto product = productService.updateProduct(id, dto);
         return ResponseEntity.ok(ApiResponse.success("Produit mis à jour", product));
     }
-    
+
     @PutMapping("/{id}/adjust-stock")
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'WAREHOUSE')")
     public ResponseEntity<ApiResponse<ProductDto>> adjustStock(

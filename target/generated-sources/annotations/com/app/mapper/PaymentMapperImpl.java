@@ -1,8 +1,12 @@
 package com.app.mapper;
 
 import com.app.dto.PaymentDTO;
+import com.app.dto.UserDto;
 import com.app.entities.Payment;
 import com.app.entities.SalesOrder;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -11,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-03T08:28:46+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.8 (Oracle Corporation)"
+    date = "2026-04-20T17:26:59+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.9 (Microsoft)"
 )
 @Component
 public class PaymentMapperImpl implements PaymentMapper {
@@ -26,20 +30,29 @@ public class PaymentMapperImpl implements PaymentMapper {
             return null;
         }
 
-        PaymentDTO.PaymentDTOBuilder paymentDTO = PaymentDTO.builder();
+        Long salesOrderId = null;
+        Long id = null;
+        LocalDate paymentDate = null;
+        BigDecimal amount = null;
+        String reference = null;
+        String notes = null;
+        UserDto createdBy = null;
+        LocalDateTime createdAt = null;
 
-        paymentDTO.salesOrderId( paymentSalesOrderId( payment ) );
-        paymentDTO.id( payment.getId() );
-        paymentDTO.paymentDate( payment.getPaymentDate() );
-        paymentDTO.amount( payment.getAmount() );
-        paymentDTO.reference( payment.getReference() );
-        paymentDTO.notes( payment.getNotes() );
-        paymentDTO.createdBy( userMapper.toDTO( payment.getCreatedBy() ) );
-        paymentDTO.createdAt( payment.getCreatedAt() );
+        salesOrderId = paymentSalesOrderId( payment );
+        id = payment.getId();
+        paymentDate = payment.getPaymentDate();
+        amount = payment.getAmount();
+        reference = payment.getReference();
+        notes = payment.getNotes();
+        createdBy = userMapper.toDTO( payment.getCreatedBy() );
+        createdAt = payment.getCreatedAt();
 
-        paymentDTO.paymentMethod( payment.getPaymentMethod() != null ? payment.getPaymentMethod().name() : null );
+        String paymentMethod = payment.getPaymentMethod() != null ? payment.getPaymentMethod().name() : null;
 
-        return paymentDTO.build();
+        PaymentDTO paymentDTO = new PaymentDTO( id, salesOrderId, paymentDate, amount, paymentMethod, reference, notes, createdBy, createdAt );
+
+        return paymentDTO;
     }
 
     @Override

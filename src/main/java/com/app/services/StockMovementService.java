@@ -82,8 +82,20 @@ public class StockMovementService {
     }
     
     private User getCurrentUser() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByUsername(username)
-            .orElseThrow(() -> new ResourceNotFoundException("Current user not found"));
+        String keycloakId = SecurityContextHolder.getContext().getAuthentication().getName();
+        
+        return userRepository.findByUsername(keycloakId)
+            .orElseGet(() -> {
+                log.info("Création de l'utilisateur local pour l'ID Keycloak : {}", keycloakId);
+                User newUser = User.builder()
+                    .username(keycloakId)
+                    .email(keycloakId + "@system.local") // 👈 ON AJOUTE ÇA POUR ÉVITER LE NOT NULL
+                    .enabled(true)
+                    .firstName("Utilisateur") // Optionnel, pour éviter d'autres nulls si contraints
+                    .lastName("Keycloak")
+                    .password("external_auth") // Valeur bidon car l'auth est gérée par Keycloak
+                    .build();
+                return userRepository.save(newUser);
+            });
     }
 }

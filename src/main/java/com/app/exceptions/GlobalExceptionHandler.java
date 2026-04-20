@@ -13,6 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.app.dto.ApiResponse;
 
@@ -123,6 +124,11 @@ public class GlobalExceptionHandler {
         
         ApiResponse<Object> response = ApiResponse.error("Accès refusé");
         return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+    }
+    
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex) {
+        return ResponseEntity.notFound().build();
     }
     
     @ExceptionHandler(Exception.class)

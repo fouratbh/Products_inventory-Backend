@@ -31,6 +31,6 @@ jobs:
 
       - name: Build and analyze
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatique par GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Celui que tu as créé
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=fouratbh_Products_inventory-Backend -Dsonar.organization=fouratbh -Dsonar.host.url=https://sonarcloud.io

@@ -5,28 +5,7 @@ import java.time.LocalDateTime;
 
 import lombok.*;
 
-@Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ProductDto {
-    private Long id;
-    private String code;
-    private String name;
-    private String description;
-    private CategoryDto category;
-    private SupplierDto supplier;
-    private BigDecimal purchasePrice;
-    private BigDecimal sellingPrice;
-    private Integer quantityInStock;
-    private Integer minStockLevel;
-    private Integer maxStockLevel;
-    private String unit;
-    private Integer warrantyMonths;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private BigDecimal margin;
-    private BigDecimal marginPercentage;
-    private Boolean isLowStock;
-    private Boolean isOutOfStock;
+public record ProductDto(Long id, String code, String name, String description, CategoryDto category, SupplierDto supplier, BigDecimal purchasePrice, BigDecimal sellingPrice, Integer quantityInStock, Integer minStockLevel, Integer maxStockLevel, String unit, Integer warrantyMonths, LocalDateTime createdAt, LocalDateTime updatedAt, BigDecimal margin, BigDecimal marginPercentage, Boolean isLowStock, Boolean isOutOfStock, String imageUrl) {
+  
 }

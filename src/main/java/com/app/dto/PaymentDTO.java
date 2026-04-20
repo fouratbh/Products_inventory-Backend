@@ -6,18 +6,7 @@ import java.time.LocalDateTime;
 
 import lombok.*;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class PaymentDTO {
-    private Long id;
-    private Long salesOrderId;
-    private LocalDate paymentDate;
-    private BigDecimal amount;
-    private String paymentMethod;
-    private String reference;
-    private String notes;
-    private UserDto createdBy;
-    private LocalDateTime createdAt;
+
+public record PaymentDTO (Long id, Long salesOrderId, LocalDate paymentDate, BigDecimal amount, String paymentMethod, String reference, String notes, UserDto createdBy, LocalDateTime createdAt) {
+   
 }

@@ -34,5 +34,6 @@ public interface ProductMapper {
     @Mapping(target = "purchaseOrderItems", ignore = true)
     @Mapping(target = "salesOrderItems", ignore = true)
     @Mapping(target = "stockMovements", ignore = true)
+    @Mapping(target = "imageUrl", ignore = true)
     void updateEntityFromDTO(ProductUpdateDto dto, @MappingTarget Product product);
 }

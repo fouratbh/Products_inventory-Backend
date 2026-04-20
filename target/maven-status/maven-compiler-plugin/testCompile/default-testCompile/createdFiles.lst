@@ -1,0 +1,4 @@
+inventory\com\app\service\CategoryServiceTest.class
+inventory\com\app\service\AuthServiceTest.class
+inventory\com\app\service\UserServiceTest.class
+inventory\com\app\service\ProductServiceTest.class

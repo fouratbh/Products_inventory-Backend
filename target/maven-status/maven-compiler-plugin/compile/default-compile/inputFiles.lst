@@ -18,11 +18,13 @@ C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\controllers\Aut
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\services\PurchaseOrderService.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\services\ProductService.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\StockMovementDTO.java
+C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\config\WebConfig.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\PurchaseOrderUpdateDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\ReceiveProductDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\RoleMapper.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\ApiResponse.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\PurchaseOrderItemMapper.java
+C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\controllers\DebugController.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\PurchaseOrderItemDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\StockMovement.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\security\CustomUserDetailsService.java
@@ -44,13 +46,11 @@ C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\controllers\Sal
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\User.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\security\SecurityConfig.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\SupplierMapper.java
-C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\security\JwtAuthenticationFilter.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\PaymentDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\SupplierCreateDto.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\Category.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\Supplier.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\Role.java
-C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\security\JwtTokenProvider.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\security\CorsConfig.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\PurchaseOrderMapper.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\services\CategoryService.java
@@ -59,6 +59,7 @@ C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\UserUpdateD
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\LoginResponse.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\RoleCreateDto.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\ProductUpdateDto.java
+C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\kafka\KafkaProducerService.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\controllers\PurchaseOrderController.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\MonthlyRevenueDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\SalesOrderUpdateDTO.java
@@ -78,6 +79,7 @@ C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\entities\Paymen
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\UserCreateDto.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\PasswordChangeDto.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\exceptions\ResourceAlreadyExistsException.java
+C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\kafka\OrderEventConsumer.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\repos\UserRepository.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\CategoryStatsDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\RefreshTokenRequest.java
@@ -105,6 +107,7 @@ C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\exceptions\Busi
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\controllers\UserController.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\ProductMapper.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\mapper\PageMapper.java
+C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\services\FileStorageService.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\SalesOrderItemCreateDTO.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\RegisterRequest.java
 C:\Users\foura\eclipse-workspace\inventory\src\main\java\com\app\dto\LoginRequest.java

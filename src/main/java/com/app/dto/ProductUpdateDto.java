@@ -23,6 +23,9 @@ public class ProductUpdateDto {
     
     private Integer minStockLevel;
     private Integer maxStockLevel;
+    private Integer quantityInStock;
     private String unit;
     private Integer warrantyMonths;
+    private String imageUrl;
+
 }
